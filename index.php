@@ -15,5 +15,3 @@ Route::get('/hello',function (){
 Route::get('/test',[TestController::class,'store']);
 
 echo Route::run($_SERVER['REQUEST_URI']);
-
-echo View::render('hello');

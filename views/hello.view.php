@@ -7,5 +7,10 @@
   </head>
   <body>
    <button type="submit">Button</button>
+   <?php 
+   echo $name;
+   echo $age;
+   echo $gender;
+   ?>
   </body>
 </html>
