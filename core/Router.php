@@ -4,14 +4,13 @@ namespace App;
 
 class Router {
 //  private string $uri;
-  public static array $params;
+  private static array $params;
   
-  public static function get(string $route,callable $action): void
+  public static function get(string $route,callable|array $action): void
   {
     self::$params[$route] = $action;
     
   }
-  
   public static function run($uri): string
   {
     $route = parse_url($uri);
@@ -19,8 +18,32 @@ class Router {
     if(!$action){
       return 'bad request';
     }
-   return call_user_func($action);
-   
+   if(is_callable($action))
+   {
+     return self::runCallable($action);
+   }
+   if(is_array($action))
+   {
+     return self::runMethod((array)$action);
+   }
+  }
+ private static function runCallable(callable $action): string
+  {
+    return call_user_func($action);
   }
   
+  private static function runMethod(array $action): string
+  {
+    [$class , $method] = $action;
+     if(class_exists($class)){
+       $class = new $class();
+     }else{
+       return "class {$class} not found";
+     }
+     if(method_exists($class,$method)){
+       return call_user_func_array([$class,$method],[]);
+     }else{
+       return "method {$method} not found";
+     }
+  }
 }
