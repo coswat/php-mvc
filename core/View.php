@@ -2,40 +2,37 @@
 declare(strict_types=1);
 namespace App;
 
-class View {
-  
-  private static string $file;
-  private static array $var;
-  public static function render(string $view,array $data = []): ?string
-  {
-    $viewFile = $view.'.view.php';
-    self::$file = PATH.'/views/'.$viewFile;
+class View
+{
+    private static string $file;
+    private static array $var;
     
-    if(file_exists(self::$file))
+    public static function render(string $view, array $data = []): ?string
     {
-      self::$var = $data;
-      return self::loadFile();
-    }else{
-      return "{$viewFile} not found";
+        $viewFile = $view . ".view.php";
+        self::$file = PATH . "/views/" . $viewFile;
+
+        if (file_exists(self::$file)) {
+            
+            self::$var = $data;
+            return self::loadFile();
+        } else {
+            return "{$viewFile} not found";
+        }
     }
-  }
-  
-  private static function loadFile(): void
-  {
-    if(empty(self::$var))
+
+    private static function loadFile(): void
     {
-      include self::$file;
- 
-    }else{
-      
-    foreach(self::$var as $key => $value)
-    {
-      $$key = $value;
+        if (empty(self::$var)) {
+            include self::$file;
+        } else {
+            foreach (self::$var as $key => $value) {
+                $$key = $value;
+            }
+            
+            include self::$file;
+            
+        }
     }
-    include self::$file;
-    
-    }
-  
-  }
-  
+
 }
