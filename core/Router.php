@@ -6,14 +6,20 @@ namespace Core;
 class Router
 {
     private static array $params;
+    public static string $name;
+    public static array $names;
 
-    public static function get(string $route, callable|array $action): void
+    public static function get(string $route, callable|array $action): self
     {
-        self::$params[$route]['GET'] = $action;
+        self::$name = $route;
+        self::$params[$route]["GET"] = $action;
+        return new static();
     }
-    public static function post(string $route, callable|array $action): void
+    public static function post(string $route, callable|array $action): self
     {
-        self::$params[$route]['POST'] = $action;
+        self::$name = $route;
+        self::$params[$route]["POST"] = $action;
+        return new static();
     }
     public static function run($uri, $requestMethod): ?string
     {
@@ -47,5 +53,9 @@ class Router
         } else {
             return "method {$method} not found";
         }
+    }
+    public static function name(string $name): void
+    {
+        self::$names[$name] = self::$name;
     }
 }

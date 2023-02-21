@@ -14,12 +14,8 @@ class View
         self::$file = PATH . "/app/views/" . $viewFile;
         self::$var = $data;
 
-        if (self::$layout == "") {
-            if (file_exists(self::$file)) {
-                return self::loadFile();
-            } else {
-                return "{$viewFile} not found";
-            }
+        if (!self::$layout && file_exists(self::$file)) {
+            return self::loadFile();
         }
         $layoutPath =
             PATH . "/app/views/layouts/" . self::$layout . ".view.php";

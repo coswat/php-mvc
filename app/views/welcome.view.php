@@ -2,7 +2,7 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>404</title>
+  <title>Title</title>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
@@ -12,9 +12,11 @@
 <body>
   
 <h1 class="static">
-  404 Page
+  Welcome Page, Hello!
 </h1>
-<a class="default" href="/">Go Home</a>
+<form method="post" action="<?= route('post') ?>">
+<button class="default" >Enter Post Route</button>
+</form>
 </body>
 </html>
 

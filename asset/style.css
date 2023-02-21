@@ -1,0 +1,23 @@
+body{
+  color: #171717;
+  background: #171717;
+}
+.static{
+  padding: 20px;
+  color: #fff;
+}
+.test{
+  padding: 20px;
+  margin-top: 1px;
+  color: #fff;
+  size: 20px;
+}
+.default{
+  margin-left: 20px;
+  padding: 10px;
+  color: #171717;
+  size: 10px;
+  background: #fff;
+  border-radius: 20px;
+  text-decoration: none;
+}

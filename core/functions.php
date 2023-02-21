@@ -26,3 +26,16 @@ function abort(int $code = 404): void
         echo "file not found";
     }
 }
+function route(string $key)
+{
+    $array = Route::$names;
+    if (array_key_exists($key, $array)) {
+        return Route::$names[$key];
+    } else {
+        return "not found";
+    }
+}
+function asset($file)
+{
+    return "../asset/" . $file;
+}
