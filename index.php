@@ -2,7 +2,6 @@
 
 define("PATH", __DIR__);
 require __DIR__.'/vendor/autoload.php';
-require __DIR__.'/core/functions.php';
 
 use Core\Router as Route;
 use App\Controllers\TestController;
