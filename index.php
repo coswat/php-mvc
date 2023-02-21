@@ -1,10 +1,12 @@
 <?php
-define("PATH", __DIR__);
-require "loader.php";
 
-use App\Router as Route;
+define("PATH", __DIR__);
+require __DIR__.'/vendor/autoload.php';
+require __DIR__.'/core/functions.php';
+
+use Core\Router as Route;
 use App\Controllers\TestController;
-use App\View;
+use Core\View;
 
 Route::get("/", function () {
     return view('home');

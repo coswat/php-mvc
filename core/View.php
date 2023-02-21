@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace App;
+namespace Core;
 
 class View
 {
@@ -10,7 +10,7 @@ class View
     public static function render(string $view, array $data = []): ?string
     {
         $viewFile = $view . ".view.php";
-        self::$file = PATH . "/views/" . $viewFile;
+        self::$file = PATH . "/app/views/" . $viewFile;
         if (file_exists(self::$file)) {
             
             self::$var = $data;

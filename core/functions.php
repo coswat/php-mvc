@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
-use App\View;
-use App\Router as Route;
+use Core\View;
+use Core\Router as Route;
 
 function view(string $view, array $data = null): void
 {
@@ -18,7 +18,7 @@ function runRoutes(): ?string
 }
 function abort(int $code = 404): void
 {
-    $file = PATH . "/views/errors/" . $code . ".view.php";
+    $file = PATH . "/app/views/errors/" . $code . ".view.php";
     if (file_exists($file)) {
         http_response_code($code);
         include $file;
