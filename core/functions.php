@@ -23,7 +23,7 @@ function abort(int $code = 404): void
         http_response_code($code);
         require_once $file;
     } else {
-        echo "file not found";
+        return "file not found";
     }
 }
 function route(string $key)
