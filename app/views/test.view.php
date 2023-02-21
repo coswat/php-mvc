@@ -1,3 +1,2 @@
-   <?php echo $name ?>
-    <br>
-   <?php echo $github ?>
+<button>Click Here</button>
+<?= $name ?>

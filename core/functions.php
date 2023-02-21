@@ -21,7 +21,7 @@ function abort(int $code = 404): void
     $file = PATH . "/app/views/errors/" . $code . ".view.php";
     if (file_exists($file)) {
         http_response_code($code);
-        include $file;
+        require_once $file;
     } else {
         echo "file not found";
     }

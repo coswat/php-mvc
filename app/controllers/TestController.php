@@ -1,13 +1,13 @@
 <?php
 namespace App\Controllers;
-
-class TestController
+use Core\View;
+class TestController extends View
 {
     public function store()
     {
-        return view("test", [
-            "name" => "coderswat",
-            "github" => "https://github.com/coswat",
-        ]);
+         self::$layout = 'base';
+         return view("test",[
+           'name' => 'coderswat'
+           ]);
     }
 }
