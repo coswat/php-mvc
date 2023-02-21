@@ -7,19 +7,17 @@ use App\Controllers\TestController;
 use App\View;
 
 Route::get("/", function () {
-    return "Hello World";
+    return view('home');
 });
 
-Route::get("/hello", function () {
-    return "hello";
+Route::post('/post',function(){
+  return 'hello from post route';
 });
 
 Route::get("/test", [TestController::class, "store"]);
-Route::get('/help',function(){
-  return 'hi';
+
+Route::get('/abort',function(){
+  return abort(404);
 });
-
-Route::get('/testgc',[TestController::class,'post']);
-
 
 echo runRoutes();

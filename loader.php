@@ -1,5 +1,5 @@
 <?php
-// test loader
+// dummy loader
 
 require 'core/Router.php';
 require 'controllers/TestController.php';

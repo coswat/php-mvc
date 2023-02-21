@@ -11,7 +11,6 @@ class View
     {
         $viewFile = $view . ".view.php";
         self::$file = PATH . "/views/" . $viewFile;
-
         if (file_exists(self::$file)) {
             
             self::$var = $data;
@@ -19,7 +18,8 @@ class View
         } else {
             return "{$viewFile} not found";
         }
-    }
+      }
+    
 
     private static function loadFile(): void
     {

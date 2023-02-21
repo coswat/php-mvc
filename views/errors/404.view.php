@@ -2,13 +2,12 @@
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title></title>
-   
+    <title>404 Page</title>
+    
   </head>
   <body>
-   <button type="submit">Button</button>
-   <?php 
-   echo $name;
-   ?>
+    <h1>404 Page</h1>
+    <br>
+    <a href="/">Go Home</a>
   </body>
 </html>

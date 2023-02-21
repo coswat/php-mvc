@@ -16,3 +16,13 @@ function runRoutes(): ?string
 {
     return Route::run($_SERVER["REQUEST_URI"], $_SERVER["REQUEST_METHOD"]);
 }
+function abort(int $code = 404): void
+{
+    $file = PATH . "/views/errors/" . $code . ".view.php";
+    if (file_exists($file)) {
+        http_response_code($code);
+        include $file;
+    } else {
+        echo "file not found";
+    }
+}
