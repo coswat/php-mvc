@@ -8,7 +8,7 @@ cd router
 composer install
 ```
 
-## Route
+## Routes
 
 Route setup and functions explained in index.php
 
