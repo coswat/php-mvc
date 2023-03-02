@@ -9,34 +9,39 @@ class Router
     public static string $name;
     public static array $names;
 
-    public static function get(string $route, callable|array $action): self
+    public static function setRoutes(
+        string $route,
+        string $method,
+        callable|array $action
+    ): void
     {
         self::$name = $route;
-        self::$params[$route]["GET"] = $action;
+        self::$params[$route][$method] = $action;
+    }
+
+    public static function get(string $route, callable|array $action): self
+    {
+        self::setRoutes($route, "GET", $action);
         return new static();
     }
     public static function post(string $route, callable|array $action): self
     {
-        self::$name = $route;
-        self::$params[$route]["POST"] = $action;
+        self::setRoutes($route, "POST", $action);
         return new static();
     }
     public static function put(string $route, callable|array $action): self
     {
-        self::$name = $route;
-        self::$params[$route]["PUT"] = $action;
+        self::setRoutes($route, "PUT", $action);
         return new static();
     }
     public static function patch(string $route, callable|array $action): self
     {
-        self::$name = $route;
-        self::$params[$route]["PATCH"] = $action;
+        self::setRoutes($route, "PATCH", $action);
         return new static();
     }
     public static function delete(string $route, callable|array $action): self
     {
-        self::$name = $route;
-        self::$params[$route]["DELETE"] = $action;
+        self::setRoutes($route, "DELETE", $action);
         return new static();
     }
     public static function run($uri, $requestMethod): ?string
@@ -68,9 +73,8 @@ class Router
         }
         if (method_exists($class, $method)) {
             return call_user_func_array([$class, $method], []);
-        } else {
-            return "method {$method} not found";
         }
+            return "method {$method} not found";
     }
     public static function name(string $name): void
     {
