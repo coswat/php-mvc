@@ -14,7 +14,8 @@ function view(string $view, array $data = null): void
 
 function runRoutes(): ?string
 {
-    return Route::run($_SERVER["REQUEST_URI"], $_SERVER["REQUEST_METHOD"]);
+       $method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
+    return Route::run($_SERVER["REQUEST_URI"], $method);
 }
 function abort(int $code = 404)
 {
@@ -26,7 +27,7 @@ function abort(int $code = 404)
         return "file not found";
     }
 }
-function route(string $key)
+function route(string $key): string
 {
     $array = Route::$names;
     if (array_key_exists($key, $array)) {
@@ -35,7 +36,11 @@ function route(string $key)
         return "not found";
     }
 }
-function asset($file)
+function asset(string $file): string
 {
-    return "../asset/" . $file;
+    return "/asset/" . $file;
+}
+function method(string $method): string
+{
+  return '<input type="hidden" name="_method" value="'.$method.'"/>';
 }

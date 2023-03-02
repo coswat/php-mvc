@@ -21,6 +21,24 @@ class Router
         self::$params[$route]["POST"] = $action;
         return new static();
     }
+    public static function put(string $route, callable|array $action): self
+    {
+        self::$name = $route;
+        self::$params[$route]["PUT"] = $action;
+        return new static();
+    }
+    public static function patch(string $route, callable|array $action): self
+    {
+        self::$name = $route;
+        self::$params[$route]["PATCH"] = $action;
+        return new static();
+    }
+    public static function delete(string $route, callable|array $action): self
+    {
+        self::$name = $route;
+        self::$params[$route]["DELETE"] = $action;
+        return new static();
+    }
     public static function run($uri, $requestMethod): ?string
     {
         $route = parse_url($uri);

@@ -15,6 +15,14 @@
   Welcome Page, Hello!
 </h1>
 <form method="post" action="<?= route('post') ?>">
+  
+<?php
+
+/*for using put/patch/delete use 
+<?= method('PUT') ?> like this below your form tag
+*/
+?>
+
 <button class="default" >Enter Post Route</button>
 </form>
 </body>
