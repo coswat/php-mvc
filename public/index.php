@@ -1,7 +1,7 @@
 <?php
 
-define("PATH", __DIR__);
-require __DIR__ . "/vendor/autoload.php";
+define("PATH", __DIR__.'/../');
+require __DIR__ . "/../vendor/autoload.php";
 
 use Core\Router as Route;
 use App\Controllers\TestController;
@@ -27,3 +27,11 @@ Route::get("/abort", function () {
 });
 
 echo runRoutes();
+
+if(class_exists(TestController::class))
+{
+  echo  "available";
+}
+else {
+   echo "not available";
+}
