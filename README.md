@@ -3,7 +3,7 @@
 ## Usage <br>
 Setup the repository <br>
 ```
-git clone https://github.com/coswat/router.git
+git clone https://github.com/coswat/php-mvc.git
 cd router
 composer install
 ```
