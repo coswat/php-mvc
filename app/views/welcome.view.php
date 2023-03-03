@@ -18,7 +18,7 @@
   
 <?php
 
-/*for using put/patch/delete use 
+/*for using put/patch/delete use
 <?= method('PUT') ?> like this below your form tag
 */
 ?>

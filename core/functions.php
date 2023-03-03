@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 use Core\View;
 use Core\Router as Route;
@@ -14,7 +15,7 @@ function view(string $view, array $data = null): void
 
 function runRoutes(): ?string
 {
-       $method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
+    $method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
     return Route::run($_SERVER["REQUEST_URI"], $method);
 }
 function abort(int $code = 404)
@@ -42,5 +43,5 @@ function asset(string $file): string
 }
 function method(string $method): string
 {
-  return '<input type="hidden" name="_method" value="'.$method.'"/>';
+    return '<input type="hidden" name="_method" value="'.$method.'"/>';
 }

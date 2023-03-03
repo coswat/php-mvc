@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Core;
@@ -13,8 +14,7 @@ class Router
         string $route,
         string $method,
         callable|array $action
-    ): void
-    {
+    ): void {
         self::$name = $route;
         self::$params[$route][$method] = $action;
     }
@@ -74,7 +74,7 @@ class Router
         if (method_exists($class, $method)) {
             return call_user_func_array([$class, $method], []);
         }
-            return "method {$method} not found";
+        return "method {$method} not found";
     }
     public static function name(string $name): void
     {

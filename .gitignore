@@ -1,1 +1,3 @@
 vendor/
+tools/
+.php-cx-fixer.cache
