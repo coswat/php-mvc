@@ -5,7 +5,7 @@ custom php mvc without any other packages, Laravel like routes, and more functio
 Setup the repository <br>
 ```
 git clone https://github.com/coswat/php-mvc.git
-cd router
+cd php-mvc
 composer install
 ```
 ## running
