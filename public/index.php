@@ -1,5 +1,4 @@
 <?php
-
 define('APP_START', microtime(true));
 define('PATH', __DIR__.'/../');
 

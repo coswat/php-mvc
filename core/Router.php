@@ -3,10 +3,11 @@
 declare(strict_types=1);
 
 namespace Core;
+use App\Middleware\Middleware;
 
 class Router
 {
-    private static array $params;
+    private static array $routes;
     public static string $name;
     public static array $names;
 
@@ -15,8 +16,14 @@ class Router
         string $method,
         callable|array $action
     ): void {
+        $middleware = null;
         self::$name = $route;
-        self::$params[$route][$method] = $action;
+        self::$routes[] = [
+            "route" => $route,
+            "method" => $method,
+            "action" => $action,
+            "middleware" => null,
+        ];
     }
 
     public static function get(string $route, callable|array $action): self
@@ -46,16 +53,29 @@ class Router
     }
     public static function run($uri, $requestMethod): ?string
     {
-        $route = parse_url($uri);
-        $action = self::$params[$route["path"]][$requestMethod] ?? null;
-        if (!$action) {
-            return "bad request";
-        }
-        if (is_callable($action)) {
-            return self::runCallable($action);
-        }
-        if (is_array($action)) {
-            return self::runMethod((array) $action);
+        $url = parse_url($uri);
+
+        foreach (self::$routes as $route) {
+            if (
+                $route["route"] == $url["path"] &&
+                $route["method"] == $requestMethod
+            ) {
+                $action = $route["action"];
+                if ($route["middleware"]) {
+                    $middleware =
+                        Middleware::MAP[$route["middleware"]] ?? false;
+                    (new $middleware())->handle();
+                }
+                if (!$action) {
+                    return "bad request";
+                }
+                if (is_callable($action)) {
+                    return self::runCallable($action);
+                }
+                if (is_array($action)) {
+                    return self::runMethod((array) $action);
+                }
+            }
         }
     }
     private static function runCallable(callable $action): ?string
@@ -76,8 +96,14 @@ class Router
         }
         return "method {$method} not found";
     }
-    public static function name(string $name): void
+    public static function name(string $name): self
     {
         self::$names[$name] = self::$name;
+        return new static();
+    }
+    public function middleware(string $key): self
+    {
+        self::$routes[array_key_last(self::$routes)]["middleware"] = $key;
+        return new static();
     }
 }

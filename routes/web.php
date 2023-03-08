@@ -8,16 +8,16 @@ second function route(string name) if you set route a name , this function will 
 
 Note : layouts only works in returinig view from controller, more features add soon*/
 
-Route::get("/", function () {
-    return view("welcome");
-})->name("home");
+Route::get('/', function () {
+    return view('welcome');
+})->name('home');
 
-Route::get("/test", function () {
-    return "hello";
-});
+Route::get('/private', function () {
+    return 'Hello you are Authenticated';
+})->middleware('auth');
 
-Route::post("/post", [TestController::class, "store"])->name("post");
+Route::post('/post', [TestController::class, 'store'])->name('post');
 
-Route::get("/abort", function () {
+Route::get('/abort', function () {
     return abort(404);
 });
