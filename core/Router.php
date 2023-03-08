@@ -16,7 +16,6 @@ class Router
         string $method,
         callable|array $action
     ): void {
-        $middleware = null;
         self::$name = $route;
         self::$routes[] = [
             "route" => $route,
