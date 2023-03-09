@@ -65,9 +65,6 @@ class Router
                         Middleware::MAP[$route["middleware"]] ?? false;
                     (new $middleware())->handle();
                 }
-                if (!$action) {
-                    return "bad request";
-                }
                 if (is_callable($action)) {
                     return self::runCallable($action);
                 }
@@ -76,6 +73,7 @@ class Router
                 }
             }
         }
+        return 'bad request';
     }
     private static function runCallable(callable $action): ?string
     {
